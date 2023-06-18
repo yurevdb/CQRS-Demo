@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Domain;
 
 namespace Persistence;
 public interface IDataAccess

@@ -1,9 +1,11 @@
+using Application;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<IDataAccess, DemoData>();
+builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(MediatrEntrypoint).Assembly));
 
 var app = builder.Build();
 
