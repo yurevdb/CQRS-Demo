@@ -1,0 +1,22 @@
+﻿@page "/"
+@using Application;
+@using Persistence;
+@inject IDataAccess data;
+
+<h1>Hello, world!</h1>
+
+<ul>
+	@foreach(var p in people)
+	{
+		<li>@p.FirsName @p.LastName</li>
+	}
+</ul>
+
+@code{
+	private IEnumerable<Person> people;
+
+	protected override async Task OnInitializedAsync()
+	{
+		people = await data.GetPeople();
+	}
+}
