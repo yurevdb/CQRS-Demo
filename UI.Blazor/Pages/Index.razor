@@ -6,6 +6,8 @@
 
 <h1>Hello, world!</h1>
 
+<button @onclick="AddPerson">Add Random Person</button>
+
 <ul>
 	@foreach(var p in people)
 	{
@@ -13,11 +15,21 @@
 	}
 </ul>
 
+
 @code{
 	private IEnumerable<Person> people;
 
 	protected override async Task OnInitializedAsync()
 	{
 		people = await mediator.Send(new GetPeopleQuery());
+	}
+
+	private void AddPerson()
+	{
+		var p = new Person("New", "Person");
+		mediator.Send(new AddPersonCommand(p));
+		var l = new List<Person>(people);
+		l.Add(p);
+		people = l;
 	}
 }

@@ -13,7 +13,13 @@ public class DemoData : IDataAccess
             new Person("John", "Doe")
         };
     }
-    public Task<IEnumerable<Person>> GetPeople()
+
+	public Task AddPerson(Person person)
+	{
+        return Task.Run(() => people.Add(person));
+	}
+
+	public Task<IEnumerable<Person>> GetPeople()
     {
         return Task.FromResult<IEnumerable<Person>>(people);
     }
